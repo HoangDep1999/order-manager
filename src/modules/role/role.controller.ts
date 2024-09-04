@@ -20,15 +20,6 @@ export class RoleController{
         }
     }
 
-    @Get('/get-role')
-    async getAllRoleNotDeleted(): Promise<ResponseType<RoleEntity>>{
-        try {
-            return new ReponseData(await this.roleService.getAllRolesNotDeleted(), HttpStatus.SUCCESS, HttpMessage.SUCCESS)
-        } catch (error) {
-            return new ReponseData([], HttpStatus.ERROR, HttpMessage.ERROR)
-        }
-    }
-
     @Get(':id')
     async getRoleById(@Param('id') id:number): Promise<ResponseType<RoleEntity>>{
         try {

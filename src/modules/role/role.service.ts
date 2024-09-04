@@ -1,6 +1,5 @@
-import { Injectable } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { RoleRepository } from "./role.repository";
+import { Inject, Injectable } from "@nestjs/common";
+import { RoleRepository } from "../../repository/RoleRepository";
 import { RoleDTO } from "./dto/role.dto";
 import { RoleEntity } from "../entities/role.entity";
 
@@ -8,16 +7,12 @@ import { RoleEntity } from "../entities/role.entity";
 export class RoleService{
 
     constructor(
-        // @InjectRepository(RoleRepository)
+        @Inject('RoleRepository')
         private readonly roleRepository: RoleRepository
     ){}
 
     async getAllRoles(): Promise<RoleEntity[]>{
         return this.roleRepository.findAll();
-    }
-
-    async getAllRolesNotDeleted(): Promise<RoleEntity[]>{
-        return this.roleRepository.findAllNotDeleted();
     }
 
     async getRoleById(id:number): Promise<RoleEntity>{

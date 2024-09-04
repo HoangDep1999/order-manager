@@ -11,7 +11,7 @@ export class UserEntity extends ModelEnity{
     @Column()
     name: string;
 
-    @Column()
+    @Column({unique: true})
     email: string;
 
     @Column()
@@ -20,7 +20,7 @@ export class UserEntity extends ModelEnity{
     @Column()
     password: string;
 
-    @Column()
+    @Column({unique: true})
     phone: string;
 
     @ManyToOne(()=> RoleEntity)
